@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CraftedTreasures - Handmade Gifts</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+      .cart-item-enter {
+        animation: slideIn 0.3s ease-out;
+      }
+      
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      .cart-badge {
+        animation: bounce 0.3s ease-out;
+      }
+      
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-pink-50 shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+        <h1 class="text-2xl font-bold text-pink-600">CraftedTreasures</h1>
+        <nav class="space-x-4 hidden md:flex">
+          <a href="#" class="hover:text-pink-600">Home</a>
+          <a href="shop.html" class="hover:text-pink-600">Shop</a>
+          <a href="about.html" class="hover:text-pink-600">About</a>
+          <a href="contact.html" class="hover:text-pink-600">Contact</a>
+        </nav>
+        <div class="flex space-x-2 items-center">
+          <!-- Cart Icon -->
+          <a href="cart.html" class="relative p-2 text-pink-600 hover:text-pink-700 transition">
+            <i class="fas fa-shopping-cart text-xl"></i>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center cart-badge hidden">0</span>
+          </a>
+          <div class="hidden md:flex space-x-2">
+            <button class="bg-pink-600 text-white px-4 py-2 rounded">Login</button>
+            <button class="border border-pink-600 text-pink-600 px-4 py-2 rounded">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+
+    <!-- Hero Section -->
+    <section class="bg-pink-100 py-16">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4 text-pink-700">Unique Handmade Crafts for Every Occasion</h2>
+          <p class="text-gray-600 mb-6">Find the perfect gift made with love and care. Support local artisans with every purchase.</p>
+          <a href="shop.html" class="bg-pink-600 text-white px-6 py-3 rounded text-lg">Browse Collection</a>
+        </div>
+        <div class="md:w-1/2">
+          <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_5ngs2ksb.json" background="transparent" speed="1" style="width: 100%; height: 300px;" loop autoplay></lottie-player>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-12 bg-white">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold mb-8 text-gray-800">Shop by Category</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="bg-pink-50 p-4 rounded-lg hover:shadow-lg transition cursor-pointer">
+            <img src="https://via.placeholder.com/100x100" class="mx-auto mb-2" alt="Home Decor" />
+            <p class="font-semibold">Home Decor</p>
+          </div>
+          <div class="bg-pink-50 p-4 rounded-lg hover:shadow-lg transition cursor-pointer">
+            <img src="https://via.placeholder.com/100x100" class="mx-auto mb-2" alt="Jewelry" />
+            <p class="font-semibold">Jewelry</p>
+          </div>
+          <div class="bg-pink-50 p-4 rounded-lg hover:shadow-lg transition cursor-pointer">
+            <img src="https://via.placeholder.com/100x100" class="mx-auto mb-2" alt="Stationery" />
+            <p class="font-semibold">Stationery</p>
+          </div>
+          <div class="bg-pink-50 p-4 rounded-lg hover:shadow-lg transition cursor-pointer">
+            <img src="https://via.placeholder.com/100x100" class="mx-auto mb-2" alt="Festive Gifts" />
+            <p class="font-semibold">Festive Gifts</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="bg-pink-50 py-12">
+      <div class="max-w-7xl mx-auto px-4">
+        <h3 class="text-3xl font-bold text-center text-gray-800 mb-10">Featured Products</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Product Card 1 -->
+          <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition">
+            <a href="product.html?id=1">
+              <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full cursor-pointer hover:opacity-80 transition" alt="Hand-Painted Vase" />
+              <h4 class="text-xl font-semibold mb-2 hover:text-pink-600 transition">Hand-Painted Vase</h4>
+            </a>
+            <p class="text-gray-600 mb-2">Beautiful ceramic vase with intricate hand-painted designs</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-pink-600">₹499</span>
+              <button class="add-to-cart bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition" 
+                      data-id="1" data-name="Hand-Painted Vase" data-price="499" data-image="https://via.placeholder.com/300x200">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+          
+          <!-- Product Card 2 -->
+          <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition">
+            <a href="product.html?id=2">
+              <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full cursor-pointer hover:opacity-80 transition" alt="Macrame Wall Hanging" />
+              <h4 class="text-xl font-semibold mb-2 hover:text-pink-600 transition">Macrame Wall Hanging</h4>
+            </a>
+            <p class="text-gray-600 mb-2">Elegant handwoven macrame decoration for your wall</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-pink-600">₹899</span>
+              <button class="add-to-cart bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition" 
+                      data-id="2" data-name="Macrame Wall Hanging" data-price="899" data-image="https://via.placeholder.com/300x200">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+          
+          <!-- Product Card 3 -->
+          <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition">
+            <a href="product.html?id=3">
+              <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full cursor-pointer hover:opacity-80 transition" alt="Clay Fridge Magnets" />
+              <h4 class="text-xl font-semibold mb-2 hover:text-pink-600 transition">Clay Fridge Magnets</h4>
+            </a>
+            <p class="text-gray-600 mb-2">Set of colorful handmade clay magnets for your fridge</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-pink-600">₹299</span>
+              <button class="add-to-cart bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition" 
+                      data-id="3" data-name="Clay Fridge Magnets" data-price="299" data-image="https://via.placeholder.com/300x200">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+          
+          <!-- Product Card 4 -->
+          <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition">
+            <a href="product.html?id=4">
+              <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full cursor-pointer hover:opacity-80 transition" alt="Handmade Journal" />
+              <h4 class="text-xl font-semibold mb-2 hover:text-pink-600 transition">Handmade Journal</h4>
+            </a>
+            <p class="text-gray-600 mb-2">Premium handcrafted journal with recycled paper</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-pink-600">₹649</span>
+              <button class="add-to-cart bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition" 
+                      data-id="4" data-name="Handmade Journal" data-price="649" data-image="https://via.placeholder.com/300x200">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+          
+          <!-- Product Card 5 -->
+          <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition">
+            <a href="product.html?id=5">
+              <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full cursor-pointer hover:opacity-80 transition" alt="Wooden Coasters" />
+              <h4 class="text-xl font-semibold mb-2 hover:text-pink-600 transition">Wooden Coasters</h4>
+            </a>
+            <p class="text-gray-600 mb-2">Set of 4 engraved wooden coasters</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-pink-600">₹399</span>
+              <button class="add-to-cart bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition" 
+                      data-id="5" data-name="Wooden Coasters" data-price="399" data-image="https://via.placeholder.com/300x200">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+          
+          <!-- Product Card 6 -->
+          <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg transition">
+            <a href="product.html?id=6">
+              <img src="https://via.placeholder.com/300x200" class="rounded mb-4 w-full cursor-pointer hover:opacity-80 transition" alt="Embroidered Cushion" />
+              <h4 class="text-xl font-semibold mb-2 hover:text-pink-600 transition">Embroidered Cushion</h4>
+            </a>
+            <p class="text-gray-600 mb-2">Soft cushion with beautiful hand embroidery</p>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-pink-600">₹799</span>
+              <button class="add-to-cart bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition" 
+                      data-id="6" data-name="Embroidered Cushion" data-price="799" data-image="https://via.placeholder.com/300x200">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="bg-white py-12" id="about">
+      <div class="max-w-6xl mx-auto px-4">
+        <h3 class="text-3xl font-bold text-center text-gray-800 mb-10">Happy Customers</h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="p-4 border rounded shadow text-center">
+            <p>"Absolutely loved the attention to detail. My gift was beautifully packaged and so unique!"</p>
+            <p class="mt-2 font-semibold text-pink-600">- Aisha</p>
+          </div>
+          <div class="p-4 border rounded shadow text-center">
+            <p>"Bought a handmade journal and it exceeded my expectations. Would highly recommend!"</p>
+            <p class="mt-2 font-semibold text-pink-600">- Ramesh</p>
+          </div>
+          <div class="p-4 border rounded shadow text-center">
+            <p>"Perfect for gifting! The quality and personalization is unmatched."</p>
+            <p class="mt-2 font-semibold text-pink-600">- Priya</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="bg-pink-100 py-12" id="contact">
+      <div class="max-w-3xl mx-auto text-center px-4">
+        <h3 class="text-2xl font-bold mb-4">Get 10% Off Your First Order</h3>
+        <p class="text-gray-700 mb-6">Subscribe to our newsletter for updates and offers</p>
+        <form class="flex flex-col md:flex-row items-center justify-center gap-4">
+          <input type="email" placeholder="Enter your email" class="p-3 w-full md:w-2/3 rounded shadow-sm border focus:outline-none" />
+          <button class="bg-pink-600 text-white px-6 py-3 rounded shadow">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-pink-600 text-white text-center py-4">
+      <p>© 2025 CraftedTreasures. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Cart functionality - simplified for integration with separate cart page
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // DOM elements
+      const cartCount = document.getElementById('cartCount');
+      
+      // Add to cart functionality
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const product = {
+            id: this.dataset.id,
+            name: this.dataset.name,
+            price: parseInt(this.dataset.price),
+            image: this.dataset.image,
+            quantity: 1
+          };
+          
+          addToCart(product);
+          showNotification(`${product.name} added to cart!`);
+        });
+      });
+      
+      // Cart functions
+      function addToCart(product) {
+        const existingItem = cart.find(item => item.id === product.id);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push(product);
+        }
+        
+        // Save to localStorage for cart page
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartUI();
+      }
+      
+      function updateCartUI() {
+        // Update cart count
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        cartCount.classList.toggle('hidden', totalItems === 0);
+      }
+      
+      // Notification function
+      function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-20 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      }
+      
+      // Initialize cart count on page load
+      updateCartUI();
+    </script>
+
+  </body>
+</html>

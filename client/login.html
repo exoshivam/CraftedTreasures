@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Register - CraftedTreasures</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+      .cart-badge {
+        animation: bounce 0.3s ease-out;
+      }
+      
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .form-slide {
+        transition: all 0.5s ease-in-out;
+      }
+
+      .form-slide.slide-left {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+
+      .form-slide.slide-right {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      .floating-animation {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 50%, #f9a8d4 100%);
+      }
+
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .input-focus:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(219, 39, 119, 0.1);
+      }
+
+      .btn-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(219, 39, 119, 0.3);
+      }
+    </style>
+  </head>
+  <body class="gradient-bg min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+        <h1 class="text-2xl font-bold text-pink-600">
+          <a href="index.html" class="flex items-center">
+            <i class="fas fa-heart mr-2"></i>
+            CraftedTreasures
+          </a>
+        </h1>
+        <nav class="space-x-4 hidden md:flex">
+          <a href="index.html" class="hover:text-pink-600 transition">Home</a>
+          <a href="shop.html" class="hover:text-pink-600 transition">Shop</a>
+          <a href="index.html#about" class="hover:text-pink-600 transition">About</a>
+          <a href="index.html#contact" class="hover:text-pink-600 transition">Contact</a>
+        </nav>
+        <div class="flex space-x-2 items-center">
+          <!-- Cart Icon -->
+          <a href="cart.html" class="relative p-2 text-pink-600 hover:text-pink-700 transition">
+            <i class="fas fa-shopping-cart text-xl"></i>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center cart-badge hidden">0</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center py-12 px-4">
+      <div class="max-w-6xl w-full flex flex-col lg:flex-row items-center gap-12">
+        
+        <!-- Left Side - Illustration -->
+        <div class="lg:w-1/2 text-center">
+          <div class="floating-animation mb-8">
+            <lottie-player 
+              src="https://assets4.lottiefiles.com/packages/lf20_jcikwtux.json" 
+              background="transparent" 
+              speed="1" 
+              style="width: 100%; height: 400px;" 
+              loop 
+              autoplay>
+            </lottie-player>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-pink-700 mb-4">Welcome to CraftedTreasures</h2>
+          <p class="text-gray-600 text-lg">Join our community of craft lovers and discover unique handmade treasures</p>
+        </div>
+
+        <!-- Right Side - Forms -->
+        <div class="lg:w-1/2 w-full max-w-md">
+          <div class="glass-effect rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+            
+            <!-- Toggle Buttons -->
+            <div class="flex mb-8 bg-pink-50 rounded-xl p-1">
+              <button id="loginTab" class="flex-1 py-3 px-4 rounded-lg font-semibold transition bg-pink-600 text-white">
+                <i class="fas fa-sign-in-alt mr-2"></i>Login
+              </button>
+              <button id="registerTab" class="flex-1 py-3 px-4 rounded-lg font-semibold transition text-pink-600 hover:bg-pink-100">
+                <i class="fas fa-user-plus mr-2"></i>Register
+              </button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="form-slide">
+              <div class="mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Welcome Back!</h3>
+                <p class="text-gray-600">Sign in to your account</p>
+              </div>
+
+              <div class="space-y-4">
+                <div class="relative">
+                  <i class="fas fa-envelope absolute left-3 top-4 text-pink-400"></i>
+                  <input 
+                    type="email" 
+                    id="loginEmail"
+                    placeholder="Email Address" 
+                    class="w-full pl-10 pr-4 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                    required
+                  />
+                </div>
+
+                <div class="relative">
+                  <i class="fas fa-lock absolute left-3 top-4 text-pink-400"></i>
+                  <input 
+                    type="password" 
+                    id="loginPassword"
+                    placeholder="Password" 
+                    class="w-full pl-10 pr-12 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                    required
+                  />
+                  <button type="button" id="toggleLoginPassword" class="absolute right-3 top-4 text-pink-400 hover:text-pink-600">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-pink-300 text-pink-600 focus:ring-pink-500">
+                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                  </label>
+                  <a href="#" class="text-sm text-pink-600 hover:text-pink-700">Forgot Password?</a>
+                </div>
+
+                <button 
+                  type="submit" 
+                  class="w-full bg-pink-600 text-white py-3 rounded-lg font-semibold hover:bg-pink-700 transition btn-hover"
+                >
+                  <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                </button>
+              </div>
+
+              <div class="mt-6 text-center">
+                <p class="text-gray-600">Or continue with</p>
+                <div class="flex space-x-4 mt-4">
+                  <button type="button" class="flex-1 flex items-center justify-center py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                    <i class="fab fa-google text-red-500 mr-2"></i>Google
+                  </button>
+                  <button type="button" class="flex-1 flex items-center justify-center py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                    <i class="fab fa-facebook text-blue-600 mr-2"></i>Facebook
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="form-slide hidden">
+              <div class="mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Create Account</h3>
+                <p class="text-gray-600">Join our crafting community</p>
+              </div>
+
+              <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="relative">
+                    <i class="fas fa-user absolute left-3 top-4 text-pink-400"></i>
+                    <input 
+                      type="text" 
+                      id="firstName"
+                      placeholder="First Name" 
+                      class="w-full pl-10 pr-4 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                      required
+                    />
+                  </div>
+                  <div class="relative">
+                    <i class="fas fa-user absolute left-3 top-4 text-pink-400"></i>
+                    <input 
+                      type="text" 
+                      id="lastName"
+                      placeholder="Last Name" 
+                      class="w-full pl-10 pr-4 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="relative">
+                  <i class="fas fa-envelope absolute left-3 top-4 text-pink-400"></i>
+                  <input 
+                    type="email" 
+                    id="registerEmail"
+                    placeholder="Email Address" 
+                    class="w-full pl-10 pr-4 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                    required
+                  />
+                </div>
+
+                <div class="relative">
+                  <i class="fas fa-phone absolute left-3 top-4 text-pink-400"></i>
+                  <input 
+                    type="tel" 
+                    id="phone"
+                    placeholder="Phone Number" 
+                    class="w-full pl-10 pr-4 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                    required
+                  />
+                </div>
+
+                <div class="relative">
+                  <i class="fas fa-lock absolute left-3 top-4 text-pink-400"></i>
+                  <input 
+                    type="password" 
+                    id="registerPassword"
+                    placeholder="Password" 
+                    class="w-full pl-10 pr-12 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                    required
+                  />
+                  <button type="button" id="toggleRegisterPassword" class="absolute right-3 top-4 text-pink-400 hover:text-pink-600">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+
+                <div class="relative">
+                  <i class="fas fa-lock absolute left-3 top-4 text-pink-400"></i>
+                  <input 
+                    type="password" 
+                    id="confirmPassword"
+                    placeholder="Confirm Password" 
+                    class="w-full pl-10 pr-12 py-3 border border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent input-focus transition"
+                    required
+                  />
+                  <button type="button" id="toggleConfirmPassword" class="absolute right-3 top-4 text-pink-400 hover:text-pink-600">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+
+                <div class="flex items-start">
+                  <input type="checkbox" id="agreeTerms" class="mt-1 rounded border-pink-300 text-pink-600 focus:ring-pink-500" required>
+                  <label for="agreeTerms" class="ml-2 text-sm text-gray-600">
+                    I agree to the <a href="#" class="text-pink-600 hover:text-pink-700">Terms of Service</a> and 
+                    <a href="#" class="text-pink-600 hover:text-pink-700">Privacy Policy</a>
+                  </label>
+                </div>
+
+                <button 
+                  type="submit" 
+                  class="w-full bg-pink-600 text-white py-3 rounded-lg font-semibold hover:bg-pink-700 transition btn-hover"
+                >
+                  <i class="fas fa-user-plus mr-2"></i>Create Account
+                </button>
+              </div>
+
+              <div class="mt-6 text-center">
+                <p class="text-gray-600">Or continue with</p>
+                <div class="flex space-x-4 mt-4">
+                  <button type="button" class="flex-1 flex items-center justify-center py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                    <i class="fab fa-google text-red-500 mr-2"></i>Google
+                  </button>
+                  <button type="button" class="flex-1 flex items-center justify-center py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                    <i class="fab fa-facebook text-blue-600 mr-2"></i>Facebook
+                  </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+      <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 text-center">
+        <div class="mb-4">
+          <i class="fas fa-check-circle text-6xl text-green-500"></i>
+        </div>
+        <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2"></h3>
+        <p id="modalMessage" class="text-gray-600 mb-6"></p>
+        <button id="modalClose" class="bg-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-pink-700 transition">
+          Continue
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Cart functionality
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartCount = document.getElementById('cartCount');
+
+      function updateCartUI() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        cartCount.classList.toggle('hidden', totalItems === 0);
+      }
+
+      // Form switching
+      const loginTab = document.getElementById('loginTab');
+      const registerTab = document.getElementById('registerTab');
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+
+      loginTab.addEventListener('click', () => {
+        loginTab.classList.add('bg-pink-600', 'text-white');
+        loginTab.classList.remove('text-pink-600', 'hover:bg-pink-100');
+        registerTab.classList.remove('bg-pink-600', 'text-white');
+        registerTab.classList.add('text-pink-600', 'hover:bg-pink-100');
+        
+        registerForm.classList.add('hidden');
+        loginForm.classList.remove('hidden');
+      });
+
+      registerTab.addEventListener('click', () => {
+        registerTab.classList.add('bg-pink-600', 'text-white');
+        registerTab.classList.remove('text-pink-600', 'hover:bg-pink-100');
+        loginTab.classList.remove('bg-pink-600', 'text-white');
+        loginTab.classList.add('text-pink-600', 'hover:bg-pink-100');
+        
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+      });
+
+      // Password visibility toggle
+      function setupPasswordToggle(toggleId, inputId) {
+        const toggle = document.getElementById(toggleId);
+        const input = document.getElementById(inputId);
+        
+        toggle.addEventListener('click', () => {
+          const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+          input.setAttribute('type', type);
+          toggle.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        });
+      }
+
+      setupPasswordToggle('toggleLoginPassword', 'loginPassword');
+      setupPasswordToggle('toggleRegisterPassword', 'registerPassword');
+      setupPasswordToggle('toggleConfirmPassword', 'confirmPassword');
+
+      // Form submissions
+      const successModal = document.getElementById('successModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMessage = document.getElementById('modalMessage');
+      const modalClose = document.getElementById('modalClose');
+
+      function showSuccessModal(title, message) {
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        successModal.classList.remove('hidden');
+      }
+
+      modalClose.addEventListener('click', () => {
+        successModal.classList.add('hidden');
+      });
+
+      // Login form
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        
+        // Simple validation
+        if (email && password) {
+          // Store user session (in real app, this would be handled by backend)
+          const userData = {
+            email: email,
+            loginTime: new Date().toISOString()
+          };
+          localStorage.setItem('userSession', JSON.stringify(userData));
+          
+          showSuccessModal('Welcome Back!', 'You have been successfully logged in. Redirecting to home page...');
+          
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 2000);
+        }
+      });
+
+      // Register form
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('registerEmail').value;
+        const phone = document.getElementById('phone').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const agreeTerms = document.getElementById('agreeTerms').checked;
+        
+        // Validation
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+        
+        if (!agreeTerms) {
+          alert('Please agree to the terms and conditions.');
+          return;
+        }
+        
+        if (firstName && lastName && email && phone && password) {
+          // Store user data (in real app, this would be sent to backend)
+          const userData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            registrationDate: new Date().toISOString()
+          };
+          localStorage.setItem('userData', JSON.stringify(userData));
+          localStorage.setItem('userSession', JSON.stringify({ email: email, loginTime: new Date().toISOString() }));
+          
+          showSuccessModal('Account Created!', 'Welcome to CraftedTreasures! Your account has been created successfully.');
+          
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 2000);
+        }
+      });
+
+      // Initialize cart count
+      updateCartUI();
+
+      // Email validation
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      // Password strength indicator
+      const registerPassword = document.getElementById('registerPassword');
+      registerPassword.addEventListener('input', function() {
+        const password = this.value;
+        const strength = getPasswordStrength(password);
+        // You can add visual feedback here
+      });
+
+      function getPasswordStrength(password) {
+        let strength = 0;
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        return strength;
+      }
+    </script>
+
+  </body>
+</html>

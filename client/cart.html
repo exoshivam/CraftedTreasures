@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart | CraftedTreasures</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-pink-50 shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-pink-600">CraftedTreasures</h1>
+      <nav class="space-x-4 hidden md:flex">
+        <a href="index.html" class="hover:text-pink-600">Home</a>
+        <a href="product.html" class="hover:text-pink-600">Shop</a>
+        <a href="#contact" class="hover:text-pink-600">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Cart Section -->
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-pink-700 mb-8">Your Cart</h2>
+
+      <div class="overflow-x-auto mb-8">
+        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+          <thead class="bg-pink-100 text-pink-700">
+            <tr>
+              <th class="text-left px-6 py-4">Item</th>
+              <th class="text-left px-6 py-4">Price</th>
+              <th class="text-left px-6 py-4">Quantity</th>
+              <th class="text-left px-6 py-4">Total</th>
+              <th class="text-left px-6 py-4">Action</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items" class="text-gray-700">
+            <!-- JavaScript will render cart rows here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="text-right space-y-4">
+        <p class="text-xl">Total: ₹<span id="cart-total">0</span></p>
+        <a id="checkout-btn" href="#" target="_blank" class="inline-block bg-pink-600 text-white px-6 py-3 rounded">
+          Checkout on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-pink-600 text-white text-center py-4 mt-12">
+    <p>© 2025 CraftedTreasures. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const sampleCart = [
+      {
+        id: 1,
+        name: "Hand-Painted Vase",
+        price: 499,
+        quantity: 2,
+        image: "https://via.placeholder.com/100"
+      },
+      {
+        id: 2,
+        name: "Clay Fridge Magnets",
+        price: 299,
+        quantity: 1,
+        image: "https://via.placeholder.com/100"
+      }
+    ];
+
+    const cartTable = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    function renderCart() {
+      cartTable.innerHTML = "";
+      let total = 0;
+      sampleCart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="flex items-center gap-4 px-6 py-4">
+            <img src="${item.image}" class="w-16 h-16 rounded" alt="${item.name}">
+            <span>${item.name}</span>
+          </td>
+          <td class="px-6 py-4">₹${item.price}</td>
+          <td class="px-6 py-4">
+            <input type="number" min="1" value="${item.quantity}" class="w-16 p-1 border rounded" onchange="updateQty(${index}, this.value)">
+          </td>
+          <td class="px-6 py-4">₹${itemTotal}</td>
+          <td class="px-6 py-4">
+            <button onclick="removeItem(${index})" class="text-red-500 hover:underline">Remove</button>
+          </td>
+        `;
+        cartTable.appendChild(row);
+      });
+
+      cartTotal.textContent = total;
+
+      // WhatsApp message
+      const msg = sampleCart.map(i => `${i.quantity} x ${i.name}`).join(", ") + ` | Total: ₹${total}`;
+      checkoutBtn.href = `https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent("Hi! I'd like to order: " + msg)}`;
+    }
+
+    function updateQty(index, newQty) {
+      sampleCart[index].quantity = parseInt(newQty);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      sampleCart.splice(index, 1);
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>
